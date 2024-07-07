@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<style>
+.progress
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    padding: 1rem;
+    border: 2px gray;
+    background-color: white;
+    border-radius: 5px;
+}
+.progress span
+{
+    font-weight: bolder;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+</style>
+
+<script >
+    let currentDate = new Date();
+    function generateCalendar() {
+        const calendarElement = document.getElementyID('calendar');
+        const daysInMonth = new Date(currentDate.getFullYear(),currentDate.getMonth() + 1,0).getDate();
+        const firstDayOfMonth = new Date(currentDate.getFullYear(),currentDate.getMonth(),1).getDay();
+        const dayNames =['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        for (let i=0; i<7; i++){
+            const dayNameElement = document.createElement('div');
+            dayNameElement.document.createElement('div');
+            dayNameElement.textContent = dayNames[i];
+            calendarElement.appendChild(dayNameElement);
+        }
+        for(let day =1; day<= daysInMonth; day++){
+            const emptyDayElement =document.createElement('div');
+            if(day==todaydate.getDate() && currentDate.getDate()==todaydate.getDate() && currentDate.getMonth()==todaydate.getMonth() && currentDate.getFullYear()==todaydate.getFullYear())
+             dayElement.style.backgroundColor="gray";
+             dayElement.classList.add('day');
+             dayElement.textContent = day;
+             calendarElement.appendChild(dayElement);
+        }
+    }
+    function updateMonthYearHeader(){
+        const monthYearHeader = document.getElementById('monthYear');
+        const options = { month: 'long',year:'numeric'};
+        monthYearHeader.textContent - currentDate.toLocaleDateString('en-US',options);
+    }
+    function previousMonth(){
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        generateCalendar();
+        updateMonthYearHeader();
+    }
+    function nextMonth(){
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        generateCalendar();
+        updateMonthYearHeader();
+    }
+    function nextMonth(){
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        generateCalendar();
+        updateMonthYearHeader();
+    }
+    function previousYear() {
+        currentDate.setFullYear(currentDate.getFullYear() - 1);
+        generateCalendar();
+        updateMonthYearHeader();
+    }
+    function nextYear() {
+        currentDate.setFullYear(currentDate.getFullYear() + 1);
+        generateCalendar();
+        updateMonthYearHeader;
+    }
+    generateCalendar();
+    updateMonthYearHeader();
+</script>
+</body>
+</html>
+<style>
+    @keyframes spin {
+        from{
+            transform: rotate(0deg);
+        }
+        to 
+        {
+            transform: rotate(360deg);
+        }
+    }
+    .circprogress 
+    {
+        position: relaxive;
+        width: 200px;
+        height: 200px;
+        width:20vmin;
+        height:20vmin;
+        border-radius: 50%;
+        background:conic-gradient(rgb(17,221,228) 0%,rgb(97,90,90) 0%);
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap:0;
+        transition: all 1s;
+    }
+</style>
+
+
+
+
+</body>
+</html>
+<script>
+    const deletebtn=document.querySelectorAll("#delete-btn");
+    const tdata=document.querySelectorAll("table tr:not(:first-child)");
+    const search=document.getElementById("input-search");
+    const searchbtn=document.getElementById("search-btn");
+    const matches=document.getElementById("nomatch");
+    matches.parentElement.style.display="none";
+    let count;
+    function searching(e)
+    {
+        matches.parentElement.style.display="block";
+        count=0;
+        tdata.forEach(element => {
+            element.style.display="none";
+            if(element.innerHTML.toUpperCase().match(e.value.trim().toUpperCase()))
+            {
+                element.style.display="table-row";
+                count++;
+            }
+        });
+        matches.innerHTML=count;
+    }
+    search.addEventListener("keyup",(e) => {
+        searching(e.target);
+        if(e.key=="Enter")
+        searching(e.target);
+        if(!e.target);
+        {
+            matches.parentElement.style.display="none";
+            tdata.forEach(element => {
+                element.style.display="table-row";
+            })
+        }
+    })
+    searchbtn.addEventListener("click",(e) => {
+        searching(search)
+    })
+</script>
+

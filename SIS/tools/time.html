@@ -1,0 +1,15 @@
+<div class="time-container">
+    <h4 id="time"></h4>
+    <script>
+    function settime()
+    {
+        const time=document.getElementById("time");
+        const date=new Date();
+        time.innerHTML="";
+        time.innerHTML=date.toDateString();
+        time.innerHTML+="<br>"+date.toLocaleTimeString();
+    }
+    settime();
+    setInterval(settime,1000);
+</script>
+</div>

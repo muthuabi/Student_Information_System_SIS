@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<?php
+session_start(); ?>
+<?php require_once("Connection.php") ?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="MyStyles.css">
+</head>
+<body>
+   <style>
+        table img
+        {
+            height: 150px;
+            width: 150px;
+        }
+   </style>
+  
+    <div class="container-fluid">
+        <?php include_once("navbar.html"); ?>
+        <div class="container">
+          
+            <div class="search-box">
+                <div class="form-group d-flex gap-5">
+                    <input type="search" name="" id="" class="form-control">
+                    <button type="button" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        <div class="table-responsive" style='border: 1px rgb(194, 193, 193) solid;border-radius: 5px;'>
+        <table class="table table-bordered  table-striped">
+        <?php 
+        
+        $qry="SELECT *,password.SID AS STUDENT_ID FROM student inner join password on student.SID=password.SID";
+        $res=mysqli_query($conn,$qry);
+        $i=0;
+        if($res)
+        {
+            while($r=mysqli_fetch_assoc($res))
+            {
+                if($i==0)
+                {
+                    echo "<tr>";
+                    echo "<th>Delete</th>";
+                    echo "<th>Edit</th>";
+                    foreach($r as $key=>$val)
+                        echo "<th>$key</th>";
+                    echo "</tr>";
+                }
+                echo "<tr><td><form><button type='submit' name='Delete' value='$r[SID]' class='btn btn-danger'>Delete</button></form></td>
+                    <td><form><button type='submit' name='Edit' value='$r[SID]' class='btn btn-warning'>Edit</button></form></td>
+                    ";
+                foreach($r as $key=>$val)
+                {
+                    if($key=="File")
+                    {
+                        echo "<td><img src='photo/$val' alt='No Photo'/></td>";
+                        continue;
+                    }
+                    echo "<td>$val</td>";  
+                }
+                echo "</tr>";
+                $i=1;
+             
+            }
+           
+        }
+
+       
+        ?>
+        
+        </table>
+       
+    </div>
+    <?php
+    include_once("confirmmodal.html");
+    if(isset($_GET['Delete']))
+    {
+        $Deleteid=$_GET['Delete'];
+        $qry="DELETE FROM student where SID='$Deleteid'";
+        if(mysqli_query($conn,$qry))
+        {
+            echo "Sucess";
+        echo "<script>
+            window.location.href='StudentList.html';
+        </script>";
+        }
+    }
+    if(isset($_GET['Edit']))
+    {
+        echo "Edit";
+        $Editid=$_GET['Edit'];
+        echo $Editid;
+        echo "
+        <script>
+        window.location.href='http://localhost/ProjectSIS/NewStudent.html?Edit=$Editid'
+        </script>
+        ";
+
+    }
+    ?>
+    </div>
+
+</div>
+</body>
+<script src="history.js"></script>
+</html>

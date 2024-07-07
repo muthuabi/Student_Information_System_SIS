@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .circprogress
+        {
+            position: relative;
+            width:180px;
+            height: 180px;
+            background: conic-gradient(rgb(23, 182, 245) 50%,rgb(90, 87, 87) 0%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s;
+        }
+        .circprogress::after
+        {
+            content: "";
+            border-radius: 50%;
+            position: absolute;
+            width:70%;
+            height:70%;
+            background-color: rgb(228, 223, 223);
+        }
+        .circprogress span,img
+        {
+            z-index: 2;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+        @media screen and (max-width:700px) 
+        {
+            .circprogress{
+                width: 100px;
+                height: 100px;
+            }   
+            .circprogress span,img
+            {
+                z-index: 2;
+                font-size: 10px;
+                font-weight: bold;
+               
+            } 
+
+        }
+    </style>
+ 
+</body>
+<script>
+    function startprog(n=0,name="none",pid="circprogress1",showid='attendance-details')
+    {
+        let p=0;
+        if(n>100)
+            n=100;
+        if(n<0)
+            n=0;
+        const circ=document.querySelector("#"+pid);
+        const circspan=document.querySelector("#"+pid+" #percent");
+        const circspanname=document.querySelector("#"+pid+" #name");
+        circspanname.innerHTML=name;
+        circspanname.setAttribute("onclick","showdiv(`"+showid+"`)");
+        function circprogress()
+        {
+            circ.style.background="conic-gradient(rgb(23, 182, 245) "+p+"%, rgb(97,90,90) 0%)";
+            circspan.innerHTML=p+"%";
+            if(p<n)
+                setTimeout(requestAnimationFrame(circprogress),100);
+            p++;     
+        }
+        circprogress();
+    }
+   
+</script>
+</html>

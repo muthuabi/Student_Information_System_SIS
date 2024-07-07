@@ -1,0 +1,12 @@
+<?php 
+session_start();
+if(isset($_SESSION['student']))
+{
+    $student=$_SESSION['student'];
+    header("Location:dashboard.php");
+}
+else 
+{
+    header("Location:../Login.php?Loger=Student");
+}
+?>

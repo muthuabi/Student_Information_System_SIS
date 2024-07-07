@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<style>
+    .modals
+    {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        top:0rem;
+        box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        transform: scale(0);
+        transition: transform 0.3s;
+        z-index: 1000;
+
+
+    }
+    .confirmmodal
+    {
+        top:-2rem;
+        background-color: rgb(214, 211, 208);
+        display: flex;
+        padding: 1rem;
+        flex-direction: column;
+        width: 20rem;
+        border-radius: 15px;
+        gap:5px;
+          
+       
+    }
+    .modals-title p
+    {
+        font-weight: bolder;
+        font-size: large;
+    }
+    .modals-body p
+    {
+        font-size: medium;
+    }
+    .modals-footer
+    {
+        display: flex;
+        justify-content: space-around;
+        gap:1rem;
+    }
+    .modals-footer button
+    {
+        background-color: #3c84f1;
+        border-color: #0d6efd;
+        width: 100%;
+    }
+</style>
+<body>
+    <!-- <form action="NewUserHandle.php" method="post" id="checkform">
+        <input type="text" name="name">
+        <input type="date" name="dob" id="">
+        <button type="submit" name="sub">Sub</button>
+    </form> -->
+    <div class="modals" id="modals">
+        <div class="confirmmodal" >
+            <div class="modals-title">
+                <p>Sample Modal</p>
+            </div>
+            <div class="modals-body">
+                <p>Are you sure?</p>
+            </div>
+            <div class="modals-footer">
+                <button id="modalyes" class="btn btn primary">
+                    Yes
+                </button>
+                <button id="modalno" class="btn btn primary">
+                    No
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function modal()
+    {
+        const modals=document.getElementById("modals");
+        modals.style.transform="scale(1)";
+        return new Promise((resolve)=>{
+            const modalyes=document.getElementById("modalyes");
+            const modalno=document.getElementById("modalno");
+            modalyes.addEventListener("click",(e)=>{
+                modals.style.transform="scale(0)";
+                resolve(true);
+            });
+            modalno.addEventListener("click",(e)=>{
+                modals.style.transform="scale(0)";
+                resolve(false);
+            });
+        });
+    }
+    function formsubmit(formid,submit_btn,title,content,btn1,btn2)
+    {
+        const forms=document.getElementById(formid);
+        document.getElementById("modalyes").innerHTML=btn1;
+        document.getElementById("modalno").innerHTML=btn2;
+        const hiddensubmit=document.createElement("input");
+        hiddensubmit.type="hidden";
+        hiddensubmit.name=hiddensubmit.value=submit_btn;
+        forms.appendChild(hiddensubmit);
+        const modalbody=document.querySelector(".modals-body p");
+        const modaltittle=document.querySelector(".modals-title p");
+        modaltittle.innerHTML=title;
+        modalbody.innerHTML=content;
+        forms.addEventListener("submit",async(e)=>{
+            e.preventDefault();
+            let result=await modal();
+            if(result)
+                forms.submit();
+        });
+    }
+    // formsubmit("checkform","Create","Sam","Are You?","Ok","Cancel");
+</script>
+</html>

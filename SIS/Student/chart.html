@@ -1,0 +1,41 @@
+<script src="../tools/Chart.min.js"></script>
+<script src="Chart.min.js"></script>
+<!-- <div class="graph">
+    <canvas id="mychart">
+    </canvas>
+</div> -->
+<script>
+function createChart(id,values,colors=['gray'])
+{
+   
+    // console.log(values);
+    let label=Object.keys(values);
+    let datas=Object.values(values);
+    // console.log(label,datas);
+    var ctx=document.getElementById(id).getContext('2d');
+    var mychart=new Chart(ctx,{
+        type:'bar',
+        data:{
+            labels:label,
+            datasets:[
+                {
+                    label:"Marks",
+                    data:datas,
+                    backgroundColor:['orange','blue','green']
+                }
+            ]
+        },
+        options:{
+            scales:
+            {
+                y:
+                {
+                    beginAtZero:true
+                }
+            }
+        }
+    })
+}
+
+</script>
+</html>

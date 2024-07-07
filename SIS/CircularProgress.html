@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .circprogress
+        {
+            position: relative;
+            width:180px;
+            height: 180px;
+            background: conic-gradient(rgb(23, 182, 245) 30%,rgb(90, 87, 87) 0%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .circprogress::after
+        {
+            content: "";
+            border-radius: 50%;
+            position: absolute;
+            width:70%;
+            height:70%;
+            background-color: white;
+        }
+        .circprogress span,img
+        {
+            z-index: 2;
+        }
+    </style>
+    <div class="circprogress" id="circprogress1">
+            <span id='percent'>50%</span>
+			<span id='name'></span>
+    </div>
+</body>
+</html>

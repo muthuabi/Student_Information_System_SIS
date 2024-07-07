@@ -1,0 +1,16 @@
+<a id="toparrow" href="#"><span>&uparrow;</span></a>
+<script>
+  document.addEventListener("scroll",(e)=>{
+      if(window.scrollY>30)
+      {
+          document.getElementById("toparrow").style.opacity="100%";
+          document.getElementById("toparrow").style.right="0.5rem";
+
+      }
+      else
+      {
+          document.getElementById("toparrow").style.opacity="0%";
+          document.getElementById("toparrow").style.right="-3rem";
+      }
+  })
+</script>

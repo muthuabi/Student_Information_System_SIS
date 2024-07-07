@@ -1,0 +1,119 @@
+
+<style>
+    @media (max-width:580px)
+    {
+        .mytoast{
+            min-width: 85vw;
+            font-size: 3vw;
+        }
+    }
+    .mytoast
+    {
+        background-color: whitesmoke;
+        border-radius: 5px;
+        width:40vw;
+        position: fixed;
+        bottom:-25rem;
+		padding:0rem 0.5rem;
+        transition: all 0.2s;
+        
+        
+    }
+    .toast-body{
+   
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: larger;
+       
+    }
+    .toast-progress
+    {
+        height: 5px;
+        width:0;
+        background-color: blue;
+        
+    }
+   .toast-body p
+    {
+    
+        margin: 0.5rem;
+    }
+    .toast-body i{
+        font-size: larger;
+        padding-right: 0.5rem;
+        cursor: pointer;
+    }
+ 
+    .containers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:1rem;
+    }
+    .toast-pop
+    {
+        bottom:2rem;
+        transition: all 0.5s;
+    }
+</style>
+
+<div class="containers">
+    <button type="button" id="toast-on">Toast (One Time)</button>
+
+    <div class="mytoast" id="toast">
+       
+       
+        <div class="toast-body" id='toast-body'>
+            <span>✅</span>
+            <p>Your Toast was slight Sucessful</p>
+            <i id="close">&times;</i>
+        </div>
+        <div class="toast-progress" id="progress">
+        </div>
+    </div>
+</div>
+
+<script>
+function setToast(icon='&copy;',count='')
+{
+    const toast = document.getElementById("toast");
+    const progress=document.getElementById("progress");
+    const closet=document.getElementById("close");
+    const toaston=document.getElementById("toast-on");
+	const toast_icon=document.querySelector("#toast-body span");
+	const toast_para=document.querySelector("#toast-body p");
+	toast_icon.innerHTML='&copy;';
+	toast_para.innerHTML="<a href='Messages.php' style='text-decoration:none;color:black' >"+count+" New Requests</a>";
+    let val=0;
+    function progressing()
+    {
+       
+        progress.style.width=val.toString()+"px";
+        val=val+1;
+        console.log(toast.offsetWidth);
+        
+        if(val<toast.offsetWidth-1)
+            setTimeout(requestAnimationFrame(progressing),10);
+        else
+        closet.click();
+    }
+  
+    toaston.addEventListener("click",(e)=>{
+    //    toast.style.display="block";
+       toast.classList.toggle("toast-pop");
+       setTimeout(progressing,500);
+    })
+
+    closet.addEventListener("click",(e)=>{
+        toast.classList.toggle("toast-pop");
+        setTimeout(()=>{toast.style.display="none";},100);
+       
+    })
+	toaston.click();
+    
+}
+   
+</script>
+</html>

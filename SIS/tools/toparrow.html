@@ -1,0 +1,39 @@
+<style>
+ #toparrow {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+    z-index: 100;
+    bottom:2rem;
+    right:-3rem;
+    padding:1.5rem;
+    background-color: gray;
+    color:rgb(209, 127, 4);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0;
+    transition: all 0.5s;
+}
+</style>
+
+<a id="toparrow" href="#"><span>&uparrow;</span></a>
+<script>
+  document.addEventListener("scroll",(e)=>{
+      if(window.scrollY>30)
+      {
+          document.getElementById("toparrow").style.opacity="100%";
+          document.getElementById("toparrow").style.right="0.5rem";
+
+      }
+      else
+      {
+          document.getElementById("toparrow").style.opacity="0%";
+          document.getElementById("toparrow").style.right="-3rem";
+      }
+  })
+</script>

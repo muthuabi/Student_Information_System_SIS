@@ -1,0 +1,169 @@
+
+.navbar{
+    background-color: rgb(0, 0, 0);
+    
+}
+
+.navbar .nav-link{
+    color:white;
+ 
+}
+.navbar-brand
+{
+	color:blue;
+}
+label{
+    padding:0.2rem 0.2rem 0.2rem 0;
+    font-weight: bold;
+}
+.dropdown-togg:hover > ul{
+    display: block;
+
+}
+ul li{
+    cursor: pointer;
+}
+label{
+    padding:0.2rem 0.2rem 0.2rem 0;
+    font-weight: bold;
+}
+#login-form
+{
+    margin-top: 15vh;
+    max-width: 70vmin;
+    min-width: 60vmin;
+    gap:1rem;
+}
+.nav-stacked
+{
+    position: sticky;
+    top:0;
+   
+}
+
+ #toparrow {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+    z-index: 100;
+    bottom:2rem;
+    right:-3rem;
+    padding:1.5rem;
+    background-color: gray;
+    color:rgb(209, 127, 4);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0;
+    transition: all 0.5s;
+}
+@keyframes anime {
+    from{
+        opacity: 0%;
+        transform: translateY(20px);
+    }
+    to
+    {
+        opacity: 100%;
+        transform: translateY(0px);
+    }
+    
+   }
+.tab-content
+{
+display: none;
+animation: anime 1s;
+}
+.active-tab{
+display: block;
+}
+@keyframes invalid
+{
+	0%
+	{
+		transform:translateX(0px);
+	}
+	50%
+	{
+		transform:translateX(10px);
+	}
+	100%
+	{
+		transform:translateX(-10px);
+	}
+}
+input:invalid
+{
+    border: 1px red solid;
+}
+input:required
+{
+    border: 1px rgb(203, 200, 135) solid;
+	
+}
+input:valid
+{
+    border: 1px rgb(148, 219, 158) solid;
+}
+input:invalid:focus
+{
+    border-color: #db4545;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(199, 102, 99, 0.521);
+	/*animation:invalid 0.2s 1s linear;*/
+}
+
+.form-group li
+{
+    color:red;
+}
+.form-control:valid ~ li
+{
+    display:none
+}
+#filter-form input[type='radio']::after
+{
+	content:"";
+	position:absolute;
+	width:100px;
+	height:100px;
+	background-color:blue;
+	border:3px solid blue;
+}
+/* @keyframes animemove {
+    from{
+        transform: translateY(20px);
+    }
+    to{
+        transform: translateY(0px);
+    }
+    
+}
+.tab-content
+{
+    background-color: aqua;
+    animation: animemove 2s ease-in-out;
+} */
+  #filter-form .form-group
+            {
+                display: flex;
+                width: 100%;
+                justify-content:space-around;
+                box-shadow: 1px 1px 2px 2px gray;
+                border-radius: 5px;
+
+            }
+            #filter-form .form-group label
+            {
+                padding:0.5rem 0.5rem;
+                margin:0.2rem;
+                border-radius: 5px;
+                background-color: red;
+                width:100px;
+                text-align: center;
+                cursor:pointer;
+            }
